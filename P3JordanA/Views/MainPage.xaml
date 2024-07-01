@@ -7,39 +7,6 @@
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
-            <Image
-                Source="tocino.png"
-                HeightRequest="185"
-                Aspect="AspectFit"
-                SemanticProperties.Description="Tocino." />
-
-            <Label
-                Text="Bienvenido a la CHUCK APP"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
-
-
-
-            <Label
-                Text="Este es tocino, tocino es el best fokin personaje del fokin worl. att Jordan A"
-                HorizontalTextAlignment="Center" FontSize="20" FontAttributes="Bold"
-                
-                />
-            
-            <Button
-                x:Name="GenerarChistesBTN"
-                Text="Generar chistes" 
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="GenerarChistesClicked"
-                HorizontalOptions="Fill" />
-
-
-            <Button
-                x:Name="VerChistesBTN"
-                Text="Ver chistes "
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Fill" />
 
 
             <Button
@@ -49,7 +16,27 @@
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Fill" />
 
+            <ActivityIndicator x:Name="loading" HeightRequest="30" Color="Blue" IsRunning="False" IsVisible="False" />
+
+
+            <ListView x:Name="Chuck">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Spacing="20">
+                                <Image Source="{Binding icon_url}" HeightRequest="100" WidthRequest="100" />
+                                <StackLayout>
+                                    <Label Text="{Binding id}" FontSize="20" />
+                                    <Label Text="{Binding url}" FontSize="15" />
+                                    <Label Text="{Binding value}" FontSize="15" />
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </VerticalStackLayout>
     </ScrollView>
+
 
 </ContentPage>

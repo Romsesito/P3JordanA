@@ -13,7 +13,7 @@ namespace P3JordanA.Services
     public class ServicioS : Servicio
     {
 
-        private string url = "https://api.chucknorris.io/jokes/aKS0aJOZRBmHtOOk9Lqm8Q";   
+        private string url = "https://api.chucknorris.io/jokes/random";   
         public async Task<List<Chistechuck>> GetChistechucks()
             
         {
@@ -21,7 +21,7 @@ namespace P3JordanA.Services
             var response = await client.GetAsync(url);
             var responseBody = await response.Content.ReadAsStringAsync();
             JsonNode nodos = JsonNode.Parse(responseBody);
-            JsonNode P3JordanA = nodos["chistechuck"];
+            JsonNode P3JordanA = nodos["jokes"];
 
             var chiste = JsonSerializer.Deserialize<List<Chistechuck>>(P3JordanA.ToString());
             return chiste;

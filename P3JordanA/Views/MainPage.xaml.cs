@@ -1,38 +1,34 @@
-﻿namespace P3JordanA
+﻿using P3JordanA.Services;
+
+namespace P3JordanA
 {
     public partial class MainPage : ContentPage
     {
         int count = 0;
 
-        public MainPage()
+        private readonly P3JordanA.Services.Servicio _servicio;
+        public MainPage(Servicio servicio)
         {
             InitializeComponent();
-        }
-
-        private void OnCounterClicked(object sender, EventArgs e)
-        {
-            count++;
-
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            _servicio = servicio;
         }
 
 
-        private void GenerarChistesClicked(object sender, EventArgs e)
 
+
+        private async void OnCounterClicked(object sender, EventArgs e)
         {
-            count++;
+            loading.IsVisible = true;
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            var data = await _servicio.GetChistechucks();
+
+            Chuck.ItemsSource = data;
+
+
+            loading.IsVisible = false;
+
+
         }
 
     }
